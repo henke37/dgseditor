@@ -25,7 +25,10 @@
 				//trace(txt);
 				parser=new SectionParser(txt);
 				var contents:Array=parser.parseSection();
-				trace(contents);
+				var rows:Array=rowSplit(contents);
+				trace(rows);
+				break;
+				//trace(contents);
 			}
 		}
 	}
