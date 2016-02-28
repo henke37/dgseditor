@@ -9,7 +9,7 @@
 		
 		private var fileLoader:URLLoader;
 		
-		private var parser:GMDParser;
+		private var parser:SectionParser;
 		
 		public function EditorTest() {
 			fileLoader=new URLLoader();
@@ -19,11 +19,12 @@
 		}
 		
 		private function stuffIt(e:Event):void {
-			parser=new GMDParser();
+			
 			var txts:Array=fileLoader.data.split("\r\n");
 			for each(var txt:String in txts) {
 				//trace(txt);
-				var contents:Array=parser.parseSection(txt);
+				parser=new SectionParser(txt);
+				var contents:Array=parser.parseSection();
 				trace(contents);
 			}
 		}
