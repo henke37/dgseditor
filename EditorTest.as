@@ -3,13 +3,17 @@
 	import flash.display.*;
 	import flash.net.*;
 	import flash.utils.*;
-	import flash.events.*;	
+	import flash.events.*;
+	
+	import fl.containers.*;
 	
 	public class EditorTest extends MovieClip {
 		
 		private var fileLoader:URLLoader;
 		
 		private var parser:SectionParser;
+		
+		public var scroller_mc:ScrollPane;
 				
 		public function EditorTest() {
 			fileLoader=new URLLoader();
@@ -19,6 +23,9 @@
 		}
 		
 		private function stuffIt(e:Event):void {
+			
+			var holder:Sprite=new Sprite();
+			
 			
 			var yPos:Number=0;
 			
@@ -31,7 +38,7 @@
 				
 				for each(var row:Array in rows) {
 					var editor:RowEditor=new RowEditor();
-					addChild(editor);
+					holder.addChild(editor);
 					editor.content=row;
 					editor.y=yPos;
 					yPos+=editor.height;
@@ -39,11 +46,13 @@
 				
 				yPos+=2;
 				var breakLine:SectionBreak=new SectionBreak();
-				addChild(breakLine);
+				holder.addChild(breakLine);
 				breakLine.y=yPos;
 				yPos+=3;
 				//trace(contents);
 			}
+			
+			scroller_mc.source=holder;
 		}
 	}
 	
