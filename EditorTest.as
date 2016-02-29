@@ -11,6 +11,8 @@
 		
 		private var parser:SectionParser;
 		
+		public var row_mc:RowEditor;
+		
 		public function EditorTest() {
 			fileLoader=new URLLoader();
 			fileLoader.dataFormat=URLLoaderDataFormat.TEXT;
@@ -26,6 +28,7 @@
 				parser=new SectionParser(txt);
 				var contents:Array=parser.parseSection();
 				var rows:Array=rowSplit(contents);
+				row_mc.content=rows[0];
 				trace(rows);
 				break;
 				//trace(contents);

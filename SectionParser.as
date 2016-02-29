@@ -8,7 +8,6 @@
 		private static const ST_SP:uint=3;
 		private static const ST_ARG:uint=4;
 		private static const ST_GT:uint=5;
-		private static const ST_SL:uint=6;
 		
 		
 		private var chrPos:int;
@@ -58,9 +57,6 @@ parseLoop: for(chrPos=0;chrPos<txtLen;) {
 							
 							parseState=ST_SP;
 							continue parseLoop;
-						} else if(chr=="/") {
-							parseState=ST_SL;
-							continue parseLoop;
 						} else if(chr==">") {
 							collectTagName();
 							parseState=ST_GT;
@@ -89,9 +85,6 @@ parseLoop: for(chrPos=0;chrPos<txtLen;) {
 						collectTag();
 						endOfLastTag=chrPos;
 						parseState=ST_OUTSIDE;
-					break;
-					
-					case ST_SL:
 					break;
 					
 					default:
