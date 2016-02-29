@@ -5,7 +5,7 @@
 		private static const COL_GT:String="#AA0077";
 		private static const COL_LT:String="#AA0077";
 		private static const COL_NAME:String="#0044FF";
-		private static const COL_ARG:String="#00FF44";
+		private static const COL_ARG:String="#00DD33";
 
 		public function HTMLizer() {
 			// constructor code

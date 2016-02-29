@@ -10,9 +10,7 @@
 		private var fileLoader:URLLoader;
 		
 		private var parser:SectionParser;
-		
-		public var row_mc:RowEditor;
-		
+				
 		public function EditorTest() {
 			fileLoader=new URLLoader();
 			fileLoader.dataFormat=URLLoaderDataFormat.TEXT;
@@ -22,15 +20,28 @@
 		
 		private function stuffIt(e:Event):void {
 			
+			var yPos:Number=0;
+			
 			var txts:Array=fileLoader.data.split("\r\n");
 			for each(var txt:String in txts) {
 				//trace(txt);
 				parser=new SectionParser(txt);
 				var contents:Array=parser.parseSection();
 				var rows:Array=rowSplit(contents);
-				row_mc.content=rows[0];
-				trace(rows);
-				break;
+				
+				for each(var row:Array in rows) {
+					var editor:RowEditor=new RowEditor();
+					addChild(editor);
+					editor.content=row;
+					editor.y=yPos;
+					yPos+=editor.height;
+				}
+				
+				yPos+=2;
+				var breakLine:SectionBreak=new SectionBreak();
+				addChild(breakLine);
+				breakLine.y=yPos;
+				yPos+=3;
 				//trace(contents);
 			}
 		}
